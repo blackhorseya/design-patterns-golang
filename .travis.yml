@@ -1,0 +1,32 @@
+language: go
+
+cache:
+  directories:
+    - "$HOME/.cache/go-build"
+    - "$HOME/gopath/pkg/mod"
+
+go:
+  - '1.16'
+
+env:
+  global:
+    - GO111MODULE=on
+
+stages:
+  - Test
+  - Analytic
+
+jobs:
+  include:
+    - stage: Test
+      name: Unit Test
+      script:
+        - make test-unit
+      after_success:
+        - bash <(curl -s https://codecov.io/bash)
+    - stage: Analytic
+      name: Lint
+      before_script:
+        - go get -u golang.org/x/lint/golint
+      script:
+        - make lint
