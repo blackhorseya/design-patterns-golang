@@ -8,7 +8,7 @@ lint:
 
 .PHONY: report
 report:
-	@curl -XPOST 'https://goreportcard.com/checks' --data 'repo=github.com/blackhorseya/golang-design-patterns'
+	@curl -XPOST 'https://goreportcard.com/checks' --data 'repo=github.com/blackhorseya/learn-design-patterns'
 
 .PHONY: test-unit
 test-unit:
